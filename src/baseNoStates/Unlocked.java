@@ -3,7 +3,7 @@ package baseNoStates;
 public class Unlocked extends DoorState {
   public Unlocked(Door door) {
     super(door);
-    this.name = Actions.UNLOCK;
+    this.name = States.UNLOCKED;
   }
 
   //If the door is closed, open it, if not dont do anything

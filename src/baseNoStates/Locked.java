@@ -4,7 +4,7 @@ public class Locked extends DoorState {
 
   public Locked(Door door) {
     super(door);
-    this.name = Actions.LOCK;
+    this.name = States.LOCKED;
   }
 
   public void open() {
