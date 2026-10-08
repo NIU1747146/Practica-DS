@@ -5,11 +5,13 @@ import org.json.JSONObject;
 
 public class Door {
   private final String id;
-  private boolean closed; // physically
+  private boolean closed;// physically
+  private DoorState doorState;
 
   public Door(String id) {
     this.id = id;
     closed = true;
+    this.doorState = new Unlocked(this);
   }
 
   public void processRequest(RequestReader request) {
@@ -27,23 +29,17 @@ public class Door {
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:
-        if (closed) {
-          closed = false;
-        } else {
-          System.out.println("Can't open door " + id + " because it's already open");
-        }
+        doorState.open();
         break;
       case Actions.CLOSE:
-        if (closed) {
-          System.out.println("Can't close door " + id + " because it's already closed");
-        } else {
-          closed = true;
-        }
+        doorState.close();
         break;
       case Actions.LOCK:
+        doorState.lock();
         // TODO
         // fall through
       case Actions.UNLOCK:
+        doorState.unlock();
         // TODO
         // fall through
       case Actions.UNLOCK_SHORTLY:
@@ -60,12 +56,18 @@ public class Door {
     return closed;
   }
 
+  public void setClosed(boolean closed) { this.closed = closed; }
+
   public String getId() {
     return id;
   }
 
   public String getStateName() {
-    return "unlocked";
+    return doorState.getName();
+  }
+
+  public void setState(DoorState state) {
+    this.doorState = state;
   }
 
   @Override
