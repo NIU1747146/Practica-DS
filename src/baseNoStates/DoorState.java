@@ -14,6 +14,6 @@ public abstract class DoorState {
   public void close() {}
   public void lock() {}
   public void unlock() {}
-
+  public void unlockShortly() {}
 
 }

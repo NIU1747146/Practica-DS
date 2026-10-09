@@ -37,14 +37,14 @@ public class Door {
       case Actions.LOCK:
         doorState.lock();
         // TODO
-        // fall through
+        break;
       case Actions.UNLOCK:
         doorState.unlock();
         // TODO
-        // fall through
+        break;
       case Actions.UNLOCK_SHORTLY:
         // TODO
-        System.out.println("Action " + action + " not implemented yet");
+        doorState.unlockShortly();
         break;
       default:
         assert false : "Unknown action " + action;
