@@ -7,6 +7,8 @@ public class Door {
   private final String id;
   private boolean closed;// physically
   private DoorState doorState;
+  private Space originSpace;
+  private Space destinationSpace;
 
   public Door(String id) {
     this.id = id;
@@ -63,6 +65,11 @@ public class Door {
     return doorState.getName();
   }
 
+  public void setSpaces(Space origin, Space destination) {
+    this.originSpace = origin;
+    this.destinationSpace = destination;
+  }
+
   public void setState(DoorState state) {
     this.doorState = state;
   }
@@ -81,6 +88,8 @@ public class Door {
     json.put("id", id);
     json.put("state", getStateName());
     json.put("closed", closed);
+    json.put("originSpace", originSpace.getId());
+    json.put("destinationSpace", destinationSpace.getId());
     return json;
   }
 }
