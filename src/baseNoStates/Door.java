@@ -36,14 +36,11 @@ public class Door {
         break;
       case Actions.LOCK:
         doorState.lock();
-        // TODO
         break;
       case Actions.UNLOCK:
         doorState.unlock();
-        // TODO
         break;
       case Actions.UNLOCK_SHORTLY:
-        // TODO
         doorState.unlockShortly();
         break;
       default:
