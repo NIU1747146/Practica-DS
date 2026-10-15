@@ -65,6 +65,10 @@ public class Door {
     return doorState.getName();
   }
 
+  public Space getOriginSpace() { return originSpace; }
+
+  public Space getDestinationSpace() { return destinationSpace; }
+
   public void setSpaces(Space origin, Space destination) {
     this.originSpace = origin;
     this.destinationSpace = destination;

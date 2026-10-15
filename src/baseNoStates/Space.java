@@ -6,10 +6,11 @@ import java.util.ArrayList;
 // It knows the doors that give access to it (those having this space as destination) because an
 // area request has to be turned into one reader request per door giving access to the area.
 public class Space extends Area {
-  private final ArrayList<Door> doorsGivingAccess = new ArrayList<>();
+  private final ArrayList<Door> doorsGivingAccess;
 
   public Space(String id) {
     super(id);
+    this.doorsGivingAccess = new ArrayList<>();
   }
 
   public void addDoorGivingAccess(Door door) {

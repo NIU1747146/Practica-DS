@@ -8,10 +8,11 @@ import java.util.ArrayList;
 // groupings can be made without changing the clients.
 public class Partition extends Area {
   // spaces and/or other partitions
-  private final ArrayList<Area> children = new ArrayList<>();
+  private final ArrayList<Area> children;
 
   public Partition(String id) {
     super(id);
+    this.children = new ArrayList<>();
   }
 
   public void addChild(Area child) {
@@ -22,7 +23,11 @@ public class Partition extends Area {
   public ArrayList<Door> getDoorsGivingAccess() {
     ArrayList<Door> doors = new ArrayList<>();
     for (Area child : children) {
-      doors.addAll(child.getDoorsGivingAccess());
+      for (Door door : child.getDoorsGivingAccess()) {
+        if (!doors.contains(door)) {
+          doors.add(door);
+        }
+      }
     }
     return doors;
   }
@@ -31,7 +36,11 @@ public class Partition extends Area {
   public ArrayList<Space> getSpaces() {
     ArrayList<Space> spaces = new ArrayList<>();
     for (Area child : children) {
-      spaces.addAll(child.getSpaces());
+      for (Space space : child.getSpaces()) {
+        if (!spaces.contains(space)) {
+          spaces.add(space);
+        }
+      }
     }
     return spaces;
   }
