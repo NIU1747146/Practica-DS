@@ -13,7 +13,7 @@ public class Door {
   public Door(String id) {
     this.id = id;
     closed = true;
-    this.doorState = new Unlocked(this);
+    this.doorState = new Unlocked(this, States.UNLOCKED);
   }
 
   public void processRequest(RequestReader request) {
@@ -56,6 +56,10 @@ public class Door {
   }
 
   public void setClosed(boolean closed) { this.closed = closed; }
+
+  public void setDoorState(DoorState state) {
+    this.doorState = state;
+  }
 
   public String getId() {
     return id;

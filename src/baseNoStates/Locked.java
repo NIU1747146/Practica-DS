@@ -1,10 +1,10 @@
 package baseNoStates;
 
+// Represents the state of a locked door.
 public class Locked extends DoorState {
 
-  public Locked(Door door) {
-    super(door);
-    this.name = States.LOCKED;
+  public Locked(Door door, String name) {
+    super(door, name);
   }
 
   @Override
@@ -21,11 +21,11 @@ public class Locked extends DoorState {
   }
   @Override
   public void unlock() {
-    door.setState(new Unlocked(door));
+    door.setState(new Unlocked(door, States.UNLOCKED));
   }
   @Override
   public void unlockShortly() {
-    door.setState(new UnlockedShortly(door));
+    door.setState(new UnlockedShortly(door, States.UNLOCKED_SHORTLY));
   }
 
 }

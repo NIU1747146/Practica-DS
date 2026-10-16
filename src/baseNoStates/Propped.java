@@ -1,10 +1,10 @@
 package baseNoStates;
 
+// Represents the state of a propped-open door.
 public class Propped extends DoorState {
 
-  public Propped(Door door) {
-    super(door);
-    this.name = States.PROPPED;
+  public Propped(Door door, String name) {
+    super(door, name);
   }
   @Override
   public void open() {
@@ -13,7 +13,7 @@ public class Propped extends DoorState {
   @Override
   public void close() {
     door.setClosed(true);
-    door.setState(new Locked(door));
+    door.setState(new Locked(door, States.LOCKED));
   }
   @Override
   public void lock() {
@@ -22,6 +22,10 @@ public class Propped extends DoorState {
   @Override
   public void unlock() {
     System.out.println("Cannot unlock a propped door");
+  }
+  @Override
+  public void unlockShortly(){
+    System.out.println("Cannot unlock shortly while the door is propped open.");
   }
 
 }
