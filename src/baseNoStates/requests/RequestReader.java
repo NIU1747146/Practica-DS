@@ -94,11 +94,33 @@ public class RequestReader implements Request {
     if (user == null) {
       authorized = false;
       addReason("user doesn't exists");
-    } else {
-      //TODO: get the who, where, when and what in order to decide, and if not
-      // authorized add the reason(s)
-      authorized = true;
+      return;
     }
+
+    userName = user.getName();
+    boolean isAuthorized = true;
+
+    if (!user.canSendRequest(now)) {
+      isAuthorized = false;
+      addReason("Present date and/or time not in schedule");
+    }
+
+    if (!user.canAccessSpace(door.getOriginSpace())) {
+      isAuthorized = false;
+      addReason("Not allowed origin " + door.getOriginSpace().getId());
+    }
+
+    if (!user.canAccessSpace(door.getDestinationSpace())) {
+      isAuthorized = false;
+      addReason("Not allowed destination " + door.getDestinationSpace().getId());
+    }
+
+    if (!user.canDoAction(action)) {
+      isAuthorized = false;
+      addReason("Not allowed action " + action);
+    }
+
+    authorized = isAuthorized;
   }
 }
 
