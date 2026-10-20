@@ -14,7 +14,6 @@ public class Clock {
 
     private Clock(int period) {
         this.period = period;
-        timer = new Timer();
     }
 
     // Design Pattern: Singleton
@@ -27,20 +26,20 @@ public class Clock {
     }
 
     // starts timer
-    public void start() {
+    public synchronized void start() {
         if (timer == null) {
             timer = new Timer();
+            TimerTask repeatedTask = new TimerTask() {
+                @Override
+                public void run() {
+                    notifyObservers();
+                }
+            };
+            timer.scheduleAtFixedRate(repeatedTask, 0, 1000L * period); // Notifies every second
         }
-
-        TimerTask repeatedTask = new TimerTask() {
-            public void run() {
-                notifyObservers();
-            }
-        };
-        timer.scheduleAtFixedRate(repeatedTask, 0, 1000L * period); // Notifies every second
     }
 
-    public void stop() {
+    public synchronized void stop() {
         if (timer != null) {
             timer.cancel();
             timer = null;
@@ -62,6 +61,7 @@ public class Clock {
     }
     public void addObserver(Observer observer) {
         observers.add(observer);
+        start();
     }
 
 
