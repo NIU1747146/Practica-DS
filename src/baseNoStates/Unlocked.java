@@ -1,9 +1,9 @@
 package baseNoStates;
 
+// Represents the state of an unlocked door.
 public class Unlocked extends DoorState {
-  public Unlocked(Door door) {
-    super(door);
-    this.name = States.UNLOCKED;
+  public Unlocked(Door door, String name) {
+    super(door, name);
   }
 
   //If the door is closed, open it, if not dont do anything
@@ -28,7 +28,7 @@ public class Unlocked extends DoorState {
   @Override
   public void lock() {
     if (door.isClosed()) {
-      door.setState(new Locked(door));
+      door.setState(new Locked(door, States.LOCKED));
     }
     else {
       System.out.println("Cannot lock an open door");
@@ -37,6 +37,11 @@ public class Unlocked extends DoorState {
   @Override
   public void unlock() {
     System.out.println("The door is already unlocked");
+  }
+
+  @Override
+  public void unlockShortly(){
+    System.out.println("Door " + door.getId() + " already unlocked.");
   }
 
 }
