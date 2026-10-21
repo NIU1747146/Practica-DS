@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/state-diagram
+hide empty description
+
+[*] --> Unlocked
+Unlocked --> Locked : lock [closed]
+Locked --> Unlocked : unlock
+Locked --> UnlockedShortly : unlock_shortly
+UnlockedShortly --> UnlockedShortly : unlock_shortly / restart timer
+UnlockedShortly --> Locked : 10 s passed [closed]
+UnlockedShortly --> Propped : 10 s passed [open]
+Propped --> Locked : close
+
+Unlocked : open, close allowed
+UnlockedShortly : open, close allowed
+Locked : always closed
+Propped : open when it should be closed
+@enduml

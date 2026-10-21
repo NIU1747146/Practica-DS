@@ -1,0 +1,78 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+class Door <<milestone1>> {
++ setState(state : DoorState)
++ isClosed() : boolean
++ setClosed(closed : boolean)
+}
+
+package doorstates {
+  abstract class DoorState {
+  # door : Door
+  # name : String
+  + DoorState(door : Door, name : String)
+  + getName() : String
+  + {abstract} open()
+  + {abstract} close()
+  + {abstract} lock()
+  + {abstract} unlock()
+  + {abstract} unlockShortly()
+  }
+
+  class Unlocked
+  class Locked
+  class Propped
+
+  class UnlockedShortly {
+  - {static} TIMEOUT_SECONDS : int
+  - {static} CLOCK_PERIOD_SECONDS : int
+  - clock : Clock
+  - unlockTime : LocalDateTime
+  - hasTimeoutPassed() : boolean
+  + update()
+  }
+
+  interface Observer {
+  + update()
+  }
+
+  class Clock {
+  - {static} instance : Clock
+  - timer : Timer
+  - period : int
+  - observers : Observer[]
+  - Clock(period : int)
+  + {static} getInstance(period : int) : Clock
+  + start()
+  + stop()
+  + addObserver(observer : Observer)
+  + removeObserver(observer : Observer)
+  - notifyObservers()
+  }
+
+  class States {
+  + {static} LOCKED : String
+  + {static} UNLOCKED : String
+  + {static} UNLOCKED_SHORTLY : String
+  + {static} PROPPED : String
+  }
+}
+
+Door --> "1" DoorState : doorState
+DoorState --> "1" Door : door
+DoorState <|-- Unlocked
+DoorState <|-- Locked
+DoorState <|-- UnlockedShortly
+DoorState <|-- Propped
+Observer <|.. UnlockedShortly
+Clock o--> "*" Observer : observers
+Clock --> "1" Clock : instance
+UnlockedShortly --> "1" Clock : clock
+
+note "State pattern" as NState
+NState .. DoorState
+note "Observer pattern:\nClock = observable,\nUnlockedShortly = observer.\nClock is also a Singleton" as NObs
+NObs .. Clock
+@enduml

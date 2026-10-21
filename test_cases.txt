@@ -1,0 +1,24 @@
+Test cases for milestone 1 (run Main with -ea, open src/simulator/building.html).
+Unless said otherwise, date Monday 2026-10-19 at 10:00.
+
+Users and groups
+ 1 Ana (admin) unlock D1, Sunday 2026-10-18 23:00   -> authorized (any day, any time)
+ 2 Eulalia (employee) open D3                       -> authorized
+ 3 Eulalia unlock D2                                -> not authorized: destination parking, action unlock
+ 4 Eulalia open D3, Saturday 2026-10-24 10:00       -> not authorized: not in schedule
+ 5 Eulalia open D3, Monday 17:01                    -> not authorized: not in schedule
+ 6 Manel (manager) lock D5, Saturday 19:00          -> authorized
+ 7 Manel lock D5, Sunday 2026-10-25 10:00           -> not authorized: not in schedule
+ 8 Bernat (blank) open D3                           -> not authorized: origin, destination, action
+ 9 unknown credential                               -> not authorized: user doesn't exist
+
+Areas
+10 Ana lock area basement                           -> D1 and D2 locked (orange)
+11 Eulalia lock area ground_floor                   -> no door changes, action lock not allowed
+
+Door states
+12 Ana lock D3, then open D3                        -> stays locked and closed
+13 Ana open D5, then lock D5                        -> stays unlocked: can't lock an open door
+14 Ana lock D3, Eulalia unlock_shortly D3           -> unlocked_shortly (lime)
+15   then open D3, wait 10 s, refresh               -> propped (red); then close D3 -> locked
+16 Ana lock D4, Eulalia unlock_shortly D4, wait 10 s, refresh -> locked (orange)

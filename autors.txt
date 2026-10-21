@@ -1,0 +1,15 @@
+Fita 1
+
+Angel Moreno Renau, NIU 1744714
+Manel Palomares Burgada, NIU 1747146
+Victor Frauca, NIU <completar>
+
+Qui ha fet què
+- Manel Palomares: patró State (DoorState, Locked, Unlocked, UnlockedShortly, Propped, States);
+  grups d'usuaris i horaris (UserGroup, Schedule, User, DirectoryUsers) i l'autorització de les
+  peticions a RequestReader; correccions de Clock i UnlockedShortly; merge de les branques.
+- Angel Moreno: patró Composite per a les àrees (Area, Space, Partition, DirectoryAreas), espais
+  "from" i "to" de cada porta, peticions d'àrea (RequestArea.process); organització en packages,
+  comentaris, diagrames UML de classes i d'estats i casos de prova.
+- Victor Frauca: patrons Observer i Singleton (Clock, Observer, UnlockedShortly observant el
+  rellotge) i refactorització dels estats de la porta.

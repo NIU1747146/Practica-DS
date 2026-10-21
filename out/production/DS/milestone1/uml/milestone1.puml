@@ -1,0 +1,163 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+
+class Main {
++ {static} main(args : String[])
+}
+note right of Main::main
+DirectoryDoors.makeDoors()
+DirectoryAreas.makeAreas()
+DirectoryUsers.makeUsers()
+new WebServer()
+end note
+
+class WebServer {
+- {static} PORT : int
+- {static} formatter : DateTimeFormatter
++ WebServer()
+}
+
+class SocketThread {
+- insocked : Socket
+- makeRequest(tokens : String[]) : Request
+- makeRequestReader(tokens : String[]) : RequestReader
+- makeRequestArea(tokens : String[]) : RequestArea
+- makeHeaderAnswer() : String
+- makeJsonAnswer(request : Request) : String
++ run()
+}
+WebServer +-right- SocketThread
+note bottom of SocketThread
+inner class
+of WebServer
+end note
+
+class DirectoryDoors {
+- {static} allDoors : Door[]
++ {static} makeDoors()
++ {static} findDoorById(id : String) : Door
++ {static} getAllDoors() : Door[]
+}
+
+class DirectoryAreas {
+- {static} rootArea : Area
++ {static} makeAreas()
++ {static} findAreaById(id : String) : Area
+- {static} link(doorId : String, from : Space, to : Space)
+}
+
+class DirectoryUsers {
+- {static} users : User[]
++ {static} makeUsers()
++ {static} findUserByCredential(credential : String) : User
+}
+
+abstract class Area {
+# id : String
++ getId() : String
++ {abstract} getDoorsGivingAccess() : Door[]
++ {abstract} getSpaces() : Space[]
++ {abstract} findAreaById(id : String) : Area
+}
+
+class Partition {
+- children : Area[]
++ addChild(child : Area)
++ getDoorsGivingAccess() : Door[]
++ getSpaces() : Space[]
++ findAreaById(id : String) : Area
+}
+
+class Space {
+- doorsGivingAccess : Door[]
++ addDoorGivingAccess(door : Door)
++ getDoorsGivingAccess() : Door[]
++ getSpaces() : Space[]
++ findAreaById(id : String) : Area
+}
+
+note "Composite pattern" as NComposite
+NComposite .. Partition
+
+class Door {
+- id : String
+- closed : boolean
++ Door(id : String)
++ processRequest(request : RequestReader)
+- doAction(action : String)
++ setState(state : DoorState)
++ setSpaces(origin : Space, destination : Space)
++ getOriginSpace() : Space
++ getDestinationSpace() : Space
++ isClosed() : boolean
++ setClosed(closed : boolean)
++ getStateName() : String
++ toJson() : JSONObject
+}
+
+class User {
+- name : String
+- credential : String
++ User(name : String, credential : String)
++ setGroup(group : UserGroup)
++ canSendRequest(now : LocalDateTime) : boolean
++ canAccessSpace(space : Space) : boolean
++ canDoAction(action : String) : boolean
+}
+
+class UserGroup {
+- name : String
+- actions : String[]
++ UserGroup(name, schedule, actions, areas, users)
++ isWithinSchedule(dateTime : LocalDateTime) : boolean
++ hasAction(action : String) : boolean
++ hasSpace(space : Space) : boolean
++ findUserByCredentials(credential : String) : User
+}
+
+class Schedule {
+- fromDate : LocalDate
+- toDate : LocalDate
+- daysOfWeek : DayOfWeek[]
+- fromHour : LocalTime
+- toHour : LocalTime
++ isWithin(dateTime : LocalDateTime) : boolean
+}
+
+class Actions {
++ {static} LOCK : String
++ {static} UNLOCK : String
++ {static} UNLOCK_SHORTLY : String
++ {static} OPEN : String
++ {static} CLOSE : String
+}
+
+package doorstates {
+  abstract class DoorState
+}
+
+package requests {
+  class RequestReader
+}
+
+Area <|-- Partition
+Area <|-- Space
+Partition o--> "*" Area : children
+Space --> "*" Door : doorsGivingAccess
+Door --> "1" Space : originSpace
+Door --> "1" Space : destinationSpace
+Door --> "1" DoorState : doorState
+Door ..> RequestReader : processes
+
+DirectoryDoors --> "*" Door : allDoors
+DirectoryAreas --> "1" Area : rootArea
+DirectoryUsers --> "*" User : users
+
+User --> "1" UserGroup : group
+UserGroup --> "*" User : users
+UserGroup --> "*" Area : areas
+UserGroup --> "1" Schedule : schedule
+
+Main -[hidden]down- WebServer
+@enduml
