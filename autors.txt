@@ -2,7 +2,7 @@ Fita 1
 
 Angel Moreno Renau, NIU 1744714
 Manel Palomares Burgada, NIU 1747146
-Victor Frauca, NIU <completar>
+Victor Frauca, NIU 1671963
 
 Qui ha fet què
 - Manel Palomares: patró State (DoorState, Locked, Unlocked, UnlockedShortly, Propped, States);
