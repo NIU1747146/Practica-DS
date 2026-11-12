@@ -1,5 +1,7 @@
 package milestone1;
 
+import milestone1.visitors.FindAreaByIdVisitor;
+
 // Creates the tree of areas and finds an area by id.
 public final class DirectoryAreas {
   private static Area rootArea;
@@ -54,6 +56,8 @@ public final class DirectoryAreas {
   }
 
   public static Area findAreaById(String id) {
-    return rootArea.findAreaById(id);
+    FindAreaByIdVisitor visitor = new FindAreaByIdVisitor(id);
+    rootArea.accept(visitor);
+    return visitor.getResultArea();
   }
 }

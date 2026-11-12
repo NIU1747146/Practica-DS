@@ -1,5 +1,7 @@
 package milestone1;
 
+import milestone1.visitors.SpacesVisitor;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -39,7 +41,9 @@ public class UserGroup {
   // an area may be a partition, so we check all its spaces
   public boolean hasSpace(Space space) {
     for (Area area : areas) {
-      if (area.getSpaces().contains(space)) {
+      SpacesVisitor visitor = new SpacesVisitor();
+      area.accept(visitor);
+      if (visitor.getSpaces().contains(space)) {
         return true;
       }
     }

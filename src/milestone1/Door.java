@@ -89,6 +89,10 @@ public class Door {
     this.doorState = state;
   }
 
+  public DoorState getState() {
+    return doorState;
+  }
+
   @Override
   public String toString() {
     return "Door{"

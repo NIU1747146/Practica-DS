@@ -56,25 +56,20 @@ class DirectoryUsers {
 abstract class Area {
 # id : String
 + getId() : String
-+ {abstract} getDoorsGivingAccess() : Door[]
-+ {abstract} getSpaces() : Space[]
-+ {abstract} findAreaById(id : String) : Area
++ {abstract} accept(visitor : Visitor)
 }
 
 class Partition {
 - children : Area[]
 + addChild(child : Area)
-+ getDoorsGivingAccess() : Door[]
-+ getSpaces() : Space[]
-+ findAreaById(id : String) : Area
++ accept(visitor : Visitor)
 }
 
 class Space {
 - doorsGivingAccess : Door[]
 + addDoorGivingAccess(door : Door)
 + getDoorsGivingAccess() : Door[]
-+ getSpaces() : Space[]
-+ findAreaById(id : String) : Area
++ accept(visitor : Visitor)
 }
 
 note "Composite pattern" as NComposite
@@ -141,6 +136,10 @@ package requests {
   class RequestReader
 }
 
+package visitors {
+  interface Visitor
+}
+
 Area <|-- Partition
 Area <|-- Space
 Partition o--> "*" Area : children
@@ -158,6 +157,10 @@ User --> "1" UserGroup : group
 UserGroup --> "*" User : users
 UserGroup --> "*" Area : areas
 UserGroup --> "1" Schedule : schedule
+
+Area ..> Visitor : accept
+note "Visitor pattern" as NVisitor
+NVisitor .. Visitor
 
 Main -[hidden]down- WebServer
 @enduml

@@ -1,6 +1,6 @@
 package milestone1;
 
-import java.util.ArrayList;
+import milestone1.visitors.Visitor;
 
 // Space or partition of the building (Component of the Composite pattern).
 public abstract class Area {
@@ -14,12 +14,5 @@ public abstract class Area {
     return id;
   }
 
-  // doors whose destination is a space of this area
-  public abstract ArrayList<Door> getDoorsGivingAccess();
-
-  // all the spaces of this area
-  public abstract ArrayList<Space> getSpaces();
-
-  // null if not found
-  public abstract Area findAreaById(String id);
+  public abstract void accept(Visitor visitor);
 }
