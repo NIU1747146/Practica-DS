@@ -4,10 +4,20 @@ import milestone1.visitors.FindAreaByIdVisitor;
 
 // Creates the tree of areas and finds an area by id.
 public final class DirectoryAreas {
-  private static Area rootArea;
+  private Area rootArea;
+  private static DirectoryAreas instance = null;
+
+  private DirectoryAreas() {}
+
+  public static synchronized DirectoryAreas getInstance() {
+    if (instance == null) {
+      instance = new DirectoryAreas();
+    }
+    return instance;
+  }
 
   // must be called after DirectoryDoors.makeDoors()
-  public static void makeAreas() {
+  public void makeAreas() {
     Space parking = new Space("parking");
     Space hall = new Space("hall");
     Space room1 = new Space("room1");
@@ -49,13 +59,13 @@ public final class DirectoryAreas {
     rootArea = building;
   }
 
-  private static void link(String doorId, Space from, Space to) {
-    Door door = DirectoryDoors.findDoorById(doorId);
+  private void link(String doorId, Space from, Space to) {
+    Door door = DirectoryDoors.getInstance().findDoorById(doorId);
     door.setSpaces(from, to);
     to.addDoorGivingAccess(door);
   }
 
-  public static Area findAreaById(String id) {
+  public Area findAreaById(String id) {
     FindAreaByIdVisitor visitor = new FindAreaByIdVisitor(id);
     rootArea.accept(visitor);
     return visitor.getResultArea();

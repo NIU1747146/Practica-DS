@@ -5,9 +5,19 @@ import java.util.Arrays;
 
 // Creates the doors and finds a door by id.
 public final class DirectoryDoors {
-  private static ArrayList<Door> allDoors;
+  private ArrayList<Door> allDoors = new ArrayList<>();
+  private static DirectoryDoors instance = null;
 
-  public static void makeDoors() {
+  private DirectoryDoors() {}
+
+  public static synchronized DirectoryDoors getInstance() {
+    if (instance == null) {
+      instance = new DirectoryDoors();
+    }
+    return instance;
+  }
+
+  public void makeDoors() {
     // basement
     Door d1 = new Door("D1"); // exterior, parking
     Door d2 = new Door("D2"); // stairs, parking
@@ -26,7 +36,7 @@ public final class DirectoryDoors {
     allDoors = new ArrayList<>(Arrays.asList(d1, d2, d3, d4, d5, d6, d7, d8, d9));
   }
 
-  public static Door findDoorById(String id) {
+  public Door findDoorById(String id) {
     for (Door door : allDoors) {
       if (door.getId().equals(id)) {
         return door;
@@ -37,7 +47,7 @@ public final class DirectoryDoors {
   }
 
   // this is needed by RequestRefresh
-  public static ArrayList<Door> getAllDoors() {
+  public ArrayList<Door> getAllDoors() {
     System.out.println(allDoors);
     return allDoors;
   }

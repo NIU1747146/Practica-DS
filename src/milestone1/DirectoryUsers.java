@@ -8,9 +8,19 @@ import java.util.Arrays;
 
 // Creates the users and their groups, and finds a user by credential.
 public final class DirectoryUsers {
-  private static final ArrayList<User> users = new ArrayList<>();
+  private final ArrayList<User> users = new ArrayList<>();
+  private static DirectoryUsers instance = null;
 
-  public static void makeUsers() {
+  private DirectoryUsers() {}
+
+  public static synchronized DirectoryUsers getInstance() {
+    if (instance == null) {
+      instance = new DirectoryUsers();
+    }
+    return instance;
+  }
+
+  public void makeUsers() {
     // users without any privilege, just to keep temporally users instead of deleting them,
     // this is to withdraw all permissions but still to keep user data to give back
     // permissions later
@@ -42,10 +52,10 @@ public final class DirectoryUsers {
     ArrayList<String> empActions = new ArrayList<>(Arrays.asList(Actions.OPEN, Actions.CLOSE,
         Actions.UNLOCK_SHORTLY));
     ArrayList<Area> empAreas = new ArrayList<>();
-    empAreas.add(DirectoryAreas.findAreaById("ground_floor"));
-    empAreas.add(DirectoryAreas.findAreaById("floor1"));
-    empAreas.add(DirectoryAreas.findAreaById("exterior"));
-    empAreas.add(DirectoryAreas.findAreaById("stairs"));
+    empAreas.add(DirectoryAreas.getInstance().findAreaById("ground_floor"));
+    empAreas.add(DirectoryAreas.getInstance().findAreaById("floor1"));
+    empAreas.add(DirectoryAreas.getInstance().findAreaById("exterior"));
+    empAreas.add(DirectoryAreas.getInstance().findAreaById("stairs"));
 
     new UserGroup("employees", employeeSchedule, empActions, empAreas, employeeUsers);
 
@@ -67,7 +77,7 @@ public final class DirectoryUsers {
     ArrayList<String> allActions = new ArrayList<>(Arrays.asList(Actions.OPEN, Actions.CLOSE,
         Actions.LOCK, Actions.UNLOCK, Actions.UNLOCK_SHORTLY));
     ArrayList<Area> allAreas = new ArrayList<>();
-    allAreas.add(DirectoryAreas.findAreaById("building"));
+    allAreas.add(DirectoryAreas.getInstance().findAreaById("building"));
 
     new UserGroup("managers", managerSchedule, allActions, allAreas, managerUsers);
 
@@ -92,7 +102,7 @@ public final class DirectoryUsers {
     users.addAll(adminUsers);
   }
 
-  public static User findUserByCredential(String credential) {
+  public User findUserByCredential(String credential) {
     for (User user : users) {
       if (user.getCredential().equals(credential)) {
         return user;
