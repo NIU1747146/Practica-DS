@@ -1,8 +1,10 @@
-package milestone1;
+package milestone.n2;
 
 import java.time.LocalDateTime;
 
-// User with a credential; asks its group for its permissions.
+/**
+ * User with a credential; asks its group for its permissions.
+ */
 public class User {
   private final String name;
   private final String credential;
@@ -29,8 +31,8 @@ public class User {
     return group != null && group.isWithinSchedule(now);
   }
 
-  public boolean canAccessSpace(Space space) {
-    return group != null && group.hasSpace(space);
+  public boolean cannotAccessSpace(Space space) {
+    return group == null || !group.hasSpace(space);
   }
 
   public boolean canDoAction(String action) {

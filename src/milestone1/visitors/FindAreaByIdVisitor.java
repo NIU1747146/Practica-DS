@@ -4,6 +4,9 @@ import milestone1.Area;
 import milestone1.Partition;
 import milestone1.Space;
 
+/**
+ * Visitor that finds an area by its ID.
+ */
 public class FindAreaByIdVisitor implements Visitor {
   private final String id;
   private Area resultArea = null;

@@ -1,6 +1,8 @@
-package milestone1.doorstates;
+package milestone.n2.doorstates;
 
-// Observer interface notified by the Clock (Observer pattern).
+/**
+ * Observer interface notified by the Clock (Observer pattern).
+ */
 public interface Observer {
   void update();
 }

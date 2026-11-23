@@ -1,8 +1,10 @@
-package milestone1.requests;
+package milestone.n2.requests;
 
 import org.json.JSONObject;
 
-// Request sent by the simulator to the ACU.
+/**
+ * Request sent by the simulator to the ACU.
+ */
 public interface Request {
   JSONObject answerToJson();
 

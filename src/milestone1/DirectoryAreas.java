@@ -2,10 +2,12 @@ package milestone1;
 
 import milestone1.visitors.FindAreaByIdVisitor;
 
-// Creates the tree of areas and finds an area by id.
+/**
+ * Creates the tree of areas and save it in the system.
+ */
 public final class DirectoryAreas {
-  private Area rootArea;
   private static DirectoryAreas instance = null;
+  private Area rootArea;
 
   private DirectoryAreas() {}
 
@@ -16,19 +18,19 @@ public final class DirectoryAreas {
     return instance;
   }
 
-  // must be called after DirectoryDoors.makeDoors()
+  // Must be called after DirectoryDoors.getInstance().makeDoors()
   public void makeAreas() {
-    Space parking = new Space("parking");
-    Space hall = new Space("hall");
-    Space room1 = new Space("room1");
-    Space room2 = new Space("room2");
-    Space corridor = new Space("corridor");
-    Space room3 = new Space("room3");
-    Space it = new Space("IT");
-    Space stairs = new Space("stairs");
-    Space exterior = new Space("exterior");
+    final Space parking = new Space("parking");
+    final Space hall = new Space("hall");
+    final Space room1 = new Space("room1");
+    final Space room2 = new Space("room2");
+    final Space corridor = new Space("corridor");
+    final Space room3 = new Space("room3");
+    final Space it = new Space("IT");
+    final Space stairs = new Space("stairs");
+    final Space exterior = new Space("exterior");
 
-    // door, from (where the reader is), to (the space you enter)
+    // doorId, from (where the reader is), to (the space you enter)
     link("D1", exterior, parking);
     link("D2", stairs, parking);
     link("D3", exterior, hall);
@@ -61,6 +63,9 @@ public final class DirectoryAreas {
 
   private void link(String doorId, Space from, Space to) {
     Door door = DirectoryDoors.getInstance().findDoorById(doorId);
+    if (door == null) {
+      throw new IllegalArgumentException("door with id " + doorId + " not found");
+    }
     door.setSpaces(from, to);
     to.addDoorGivingAccess(door);
   }

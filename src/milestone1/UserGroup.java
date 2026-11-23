@@ -1,26 +1,25 @@
-package milestone1;
-
-import milestone1.visitors.SpacesVisitor;
+package milestone.n2;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import milestone.n2.visitors.SpacesVisitor;
 
-// Role with the actions, areas and schedule allowed to its users.
+/**
+ * Role with the actions, areas and schedule allowed to its users.
+ */
 public class UserGroup {
   private final String name;
   private final Schedule schedule;
   private final ArrayList<String> actions;
   private final ArrayList<Area> areas;
-  private final ArrayList<User> users;
 
-  // each user gets its group here
-  public UserGroup(String name, Schedule schedule, ArrayList<String> actions, ArrayList<Area> areas,
-                   ArrayList<User> users) {
+  // Each user gets its group here.
+  public UserGroup(String name, Schedule schedule, ArrayList<String> actions,
+                   ArrayList<Area> areas, ArrayList<User> users) {
     this.name = name;
     this.schedule = schedule;
     this.actions = actions;
     this.areas = areas;
-    this.users = users;
     for (User user : users) {
       user.setGroup(this);
     }
@@ -48,14 +47,5 @@ public class UserGroup {
       }
     }
     return false;
-  }
-
-  public User findUserByCredentials(String credential) {
-    for (User user : users) {
-      if (user.getCredential().equals(credential)) {
-        return user;
-      }
-    }
-    return null;
   }
 }

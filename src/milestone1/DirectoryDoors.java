@@ -3,7 +3,9 @@ package milestone1;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// Creates the doors and finds a door by id.
+/**
+ * Create and centralizes the management of doors throughout the system.
+ */
 public final class DirectoryDoors {
   private ArrayList<Door> allDoors = new ArrayList<>();
   private static DirectoryDoors instance = null;
@@ -42,6 +44,7 @@ public final class DirectoryDoors {
         return door;
       }
     }
+
     System.out.println("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
@@ -51,5 +54,4 @@ public final class DirectoryDoors {
     System.out.println(allDoors);
     return allDoors;
   }
-
 }

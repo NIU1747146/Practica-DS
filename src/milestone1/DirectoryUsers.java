@@ -1,4 +1,4 @@
-package milestone1;
+package milestone.n2;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -6,10 +6,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-// Creates the users and their groups, and finds a user by credential.
+/**
+ * Create and centralizes the management of users throughout the system.
+ */
 public final class DirectoryUsers {
-  private final ArrayList<User> users = new ArrayList<>();
   private static DirectoryUsers instance = null;
+  private final ArrayList<User> users = new ArrayList<>();
 
   private DirectoryUsers() {}
 
@@ -21,9 +23,7 @@ public final class DirectoryUsers {
   }
 
   public void makeUsers() {
-    // users without any privilege, just to keep temporally users instead of deleting them,
-    // this is to withdraw all permissions but still to keep user data to give back
-    // permissions later
+    // Accounts temporarily deprived of permissions while retaining data for future restoration
     ArrayList<User> blankUsers = new ArrayList<>();
     blankUsers.add(new User("Bernat", "12345"));
     blankUsers.add(new User("Blai", "77532"));
@@ -33,11 +33,12 @@ public final class DirectoryUsers {
 
     new UserGroup("blank", blankSchedule, new ArrayList<>(), new ArrayList<>(), blankUsers);
 
-    // employees :
-    // Sep. 1 this year to Mar. 1 next year
-    // week days 9-17h
-    // just shortly unlock
-    // ground floor, floor1, exterior, stairs (this, for all), that is, everywhere but the parking
+    // Employees:
+    // Active from September 1, this year, to March 1, next year.
+    // Monday to Friday, from 09:00 to 17:00.
+    // Allowed to open and close doors and temporarily unlock them.
+    // Access allowed to the ground floor, first floor, exterior and stairs.
+    // No access to the parking area.
     ArrayList<User> employeeUsers = new ArrayList<>();
     employeeUsers.add(new User("Ernest", "74984"));
     employeeUsers.add(new User("Eulalia", "43295"));
@@ -45,11 +46,11 @@ public final class DirectoryUsers {
         DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY,
         DayOfWeek.FRIDAY));
 
-    Schedule employeeSchedule = new Schedule(LocalDate.of(2026, 9, 1),
+    final Schedule employeeSchedule = new Schedule(LocalDate.of(2026, 9, 1),
         LocalDate.of(2027, 3, 1), weekDays,
         LocalTime.of(9, 0), LocalTime.of(17, 0));
 
-    ArrayList<String> empActions = new ArrayList<>(Arrays.asList(Actions.OPEN, Actions.CLOSE,
+    final ArrayList<String> empActions = new ArrayList<>(Arrays.asList(Actions.OPEN, Actions.CLOSE,
         Actions.UNLOCK_SHORTLY));
     ArrayList<Area> empAreas = new ArrayList<>();
     empAreas.add(DirectoryAreas.getInstance().findAreaById("ground_floor"));
@@ -59,11 +60,11 @@ public final class DirectoryUsers {
 
     new UserGroup("employees", employeeSchedule, empActions, empAreas, employeeUsers);
 
-    // managers :
-    // Sep. 1 this year to Mar. 1 next year
-    // week days + saturday, 8-20h
-    // all actions
-    // all spaces
+    // Managers:
+    // Active from September 1, this year, to March 1, next year.
+    // Monday to Saturday, from 08:00 to 20:00.
+    // Allowed to open, close, lock and unlock doors, including temporary unlocking.
+    // Access allowed to all areas of the building.
     ArrayList<User> managerUsers = new ArrayList<>();
     managerUsers.add(new User("Manel", "95783"));
     managerUsers.add(new User("Marta", "05827"));
@@ -81,11 +82,11 @@ public final class DirectoryUsers {
 
     new UserGroup("managers", managerSchedule, allActions, allAreas, managerUsers);
 
-    // admin :
-    // always=Jan. 1 this year to 2100
-    // all days of the week
-    // all actions
-    // all spaces
+    // Administrators:
+    // Active from January 1, this year, to January 1, 2100.
+    // Monday to Sunday, at all times.
+    // Allowed to open, close, lock and unlock doors, including temporary unlocking.
+    // Access allowed to all areas of the building.
     ArrayList<User> adminUsers = new ArrayList<>();
     adminUsers.add(new User("Ana", "11343"));
     ArrayList<DayOfWeek> allDays = new ArrayList<>(Arrays.asList(DayOfWeek.values()));
@@ -108,6 +109,7 @@ public final class DirectoryUsers {
         return user;
       }
     }
+
     System.out.println("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }

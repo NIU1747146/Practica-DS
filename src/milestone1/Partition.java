@@ -1,10 +1,11 @@
-package milestone1;
-
-import milestone1.visitors.Visitor;
+package milestone.n2;
 
 import java.util.ArrayList;
+import milestone.n2.visitors.Visitor;
 
-// Group of spaces and/or partitions (Composite of the Composite pattern).
+/**
+ * Group of spaces and/or partitions (Composite of the Composite pattern).
+ */
 public class Partition extends Area {
   // spaces and/or other partitions
   private final ArrayList<Area> children;
@@ -21,9 +22,9 @@ public class Partition extends Area {
   @Override
   public void accept(Visitor visitor) {
     visitor.visitPartition(this);
+
     for (Area child : children) {
       child.accept(visitor);
     }
   }
-
 }

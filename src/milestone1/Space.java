@@ -1,10 +1,11 @@
 package milestone1;
 
+import java.util.ArrayList;
 import milestone1.visitors.Visitor;
 
-import java.util.ArrayList;
-
-// Room or place of the building; knows the doors giving access to it (Leaf of the Composite).
+/**
+ * Room or place of the building; knows the doors giving access to it (Leaf of the Composite).
+ */
 public class Space extends Area {
   private final ArrayList<Door> doorsGivingAccess;
 

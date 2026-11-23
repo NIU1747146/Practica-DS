@@ -1,12 +1,14 @@
-package milestone1.visitors;
-
-import milestone1.Door;
-import milestone1.Partition;
-import milestone1.Space;
+package milestone.n2.visitors;
 
 import java.util.ArrayList;
 import java.util.List;
+import milestone.n2.Door;
+import milestone.n2.Partition;
+import milestone.n2.Space;
 
+/**
+ * Visitor that collects all doors giving access to a space.
+ */
 public class DoorsGivingAccessVisitor implements Visitor {
   private final List<Door> doors = new ArrayList<>();
 

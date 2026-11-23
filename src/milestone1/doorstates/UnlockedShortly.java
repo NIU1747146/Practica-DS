@@ -1,10 +1,12 @@
-package milestone1.doorstates;
+package milestone.n2.doorstates;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import milestone1.Door;
+import milestone.n2.Door;
 
-// Door unlocked for 10 s; observes the Clock and then goes to Locked or Propped (Observer pattern).
+/**
+ * Door unlocked for a limited time; observes the Clock to transition to Locked or Propped.
+ */
 public class UnlockedShortly extends DoorState implements Observer {
   private static final int TIMEOUT_SECONDS = 10;
   private static final int CLOCK_PERIOD_SECONDS = 1;
@@ -19,23 +21,19 @@ public class UnlockedShortly extends DoorState implements Observer {
     clock.addObserver(this);
   }
 
-  private boolean hasTimeoutPassed() {
-    return Duration.between(unlockTime, LocalDateTime.now()).getSeconds() >= TIMEOUT_SECONDS;
-  }
-
-  // called by the Clock every second
   @Override
   public void update() {
     if (hasTimeoutPassed()) {
       clock.removeObserver(this);
+
       if (door.isClosed()) {
         door.setState(new Locked(door, States.LOCKED));
         System.out.println("Door " + door.getId() + " automatically locked after "
-            + TIMEOUT_SECONDS + " seconds.");
+                + TIMEOUT_SECONDS + " seconds.");
       } else {
         door.setState(new Propped(door, States.PROPPED));
         System.out.println("Door " + door.getId() + " propped after "
-            + TIMEOUT_SECONDS + " seconds.");
+                + TIMEOUT_SECONDS + " seconds.");
       }
     }
   }
@@ -68,10 +66,13 @@ public class UnlockedShortly extends DoorState implements Observer {
     System.out.println("The door is already unlocked shortly");
   }
 
-  // restarts the 10 s
   @Override
   public void unlockShortly() {
     unlockTime = LocalDateTime.now();
     System.out.println("Door " + door.getId() + " unlock timer reset.");
+  }
+
+  private boolean hasTimeoutPassed() {
+    return Duration.between(unlockTime, LocalDateTime.now()).getSeconds() >= TIMEOUT_SECONDS;
   }
 }

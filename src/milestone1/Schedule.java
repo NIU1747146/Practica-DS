@@ -1,4 +1,4 @@
-package milestone1;
+package milestone.n2;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-// Dates, weekdays and hours in which a user group can send requests.
+/**
+ * Dates, weekdays and hours in which a user group can send requests.
+ */
 public class Schedule {
   private final LocalDate fromDate;
   private final LocalDate toDate;

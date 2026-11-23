@@ -2,7 +2,9 @@ package milestone1.doorstates;
 
 import milestone1.Door;
 
-// Represents a door left open after unlocked shortly expired.
+/**
+ * Represents a door left open after unlocked shortly expired.
+ */
 public class Propped extends DoorState {
 
   public Propped(Door door, String name) {

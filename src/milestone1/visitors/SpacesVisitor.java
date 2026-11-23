@@ -1,10 +1,12 @@
-package milestone1.visitors;
-
-import milestone1.Partition;
-import milestone1.Space;
+package milestone.n2.visitors;
 
 import java.util.ArrayList;
+import milestone.n2.Partition;
+import milestone.n2.Space;
 
+/**
+ * Visitor that collects all spaces in a list.
+ */
 public class SpacesVisitor implements Visitor {
   private final ArrayList<Space> spaces = new ArrayList<>();
 

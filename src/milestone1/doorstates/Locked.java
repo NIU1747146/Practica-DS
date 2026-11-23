@@ -1,8 +1,10 @@
-package milestone1.doorstates;
+package milestone.n2.doorstates;
 
-import milestone1.Door;
+import milestone.n2.Door;
 
-// Represents the state of a locked door.
+/**
+ * Represents the state of a locked door.
+ */
 public class Locked extends DoorState {
 
   public Locked(Door door, String name) {

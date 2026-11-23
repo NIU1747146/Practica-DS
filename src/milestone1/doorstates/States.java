@@ -1,6 +1,8 @@
 package milestone1.doorstates;
 
-// Names of the door states sent to the simulator.
+/**
+ * Names of the door states sent to the simulator.
+ */
 public final class States {
   public static final String LOCKED = "locked";
   public static final String UNLOCKED = "unlocked";

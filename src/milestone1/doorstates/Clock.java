@@ -1,11 +1,13 @@
-package milestone1.doorstates;
+package milestone.n2.doorstates;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-// Unique clock that notifies its observers every period seconds (Observer and Singleton patterns).
+/**
+ * Unique clock that notifies its observers every period seconds (Observer and Singleton patterns).
+ */
 public class Clock {
   private static Clock instance;
   private Timer timer;

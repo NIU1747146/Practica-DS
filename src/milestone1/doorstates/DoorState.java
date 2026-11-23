@@ -1,8 +1,10 @@
-package milestone1.doorstates;
+package milestone.n2.doorstates;
 
-import milestone1.Door;
+import milestone.n2.Door;
 
-// Abstract state of a door; each subclass defines what each action does (State pattern).
+/**
+ * Abstract state of a door; each subclass defines what each action does (State pattern).
+ */
 public abstract class DoorState {
   protected Door door;
   protected String name;

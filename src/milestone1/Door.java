@@ -6,7 +6,9 @@ import milestone1.doorstates.Unlocked;
 import milestone1.requests.RequestReader;
 import org.json.JSONObject;
 
-// Door of the building; delegates each action to its current state (State pattern).
+/**
+ * Delegates door actions to its current state (State pattern).
+ */
 public class Door {
   private final String id;
   private boolean closed; // physically
@@ -21,14 +23,13 @@ public class Door {
   }
 
   public void processRequest(RequestReader request) {
-    // it is the Door that process the request because the door has and knows
-    // its state, and if closed or open
     if (request.isAuthorized()) {
       String action = request.getAction();
       doAction(action);
     } else {
       System.out.println("not authorized");
     }
+
     request.setDoorStateName(getStateName());
   }
 

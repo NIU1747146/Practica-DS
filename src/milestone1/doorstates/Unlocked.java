@@ -2,7 +2,9 @@ package milestone1.doorstates;
 
 import milestone1.Door;
 
-// Represents the state of an unlocked door.
+/**
+ * Represents the state of an unlocked door.
+ */
 public class Unlocked extends DoorState {
 
   public Unlocked(Door door, String name) {
