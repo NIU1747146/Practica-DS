@@ -1,11 +1,14 @@
 package milestone1.doorstates;
 
 import milestone1.Door;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Represents the state of an unlocked door.
  */
 public class Unlocked extends DoorState {
+  private static final Logger logger = LoggerFactory.getLogger(Unlocked.class);
 
   public Unlocked(Door door, String name) {
     super(door, name);
@@ -16,14 +19,14 @@ public class Unlocked extends DoorState {
     if (door.isClosed()) {
       door.setClosed(false);
     } else {
-      System.out.println("The door is already open");
+      logger.info("Door " + door.getId() + " is already open");
     }
   }
 
   @Override
   public void close() {
     if (door.isClosed()) {
-      System.out.println("The door is already closed");
+      logger.info("Door " + door.getId() + " is already closed");
     } else {
       door.setClosed(true);
     }
@@ -34,17 +37,17 @@ public class Unlocked extends DoorState {
     if (door.isClosed()) {
       door.setState(new Locked(door, States.LOCKED));
     } else {
-      System.out.println("Cannot lock an open door");
+      logger.info("Cannot lock door " + door.getId() + " because it is open");
     }
   }
 
   @Override
   public void unlock() {
-    System.out.println("The door is already unlocked");
+    logger.warn("Door " + door.getId() + " is already unlocked");
   }
 
   @Override
   public void unlockShortly() {
-    System.out.println("Door " + door.getId() + " already unlocked.");
+    logger.info("Door " + door.getId() + " already unlocked.");
   }
 }

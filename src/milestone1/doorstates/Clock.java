@@ -1,14 +1,18 @@
-package milestone.n2.doorstates;
+package milestone1.doorstates;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.CopyOnWriteArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Unique clock that notifies its observers every period seconds (Observer and Singleton patterns).
  */
 public class Clock {
+  private static final Logger logger = LoggerFactory.getLogger(Clock.class);
+
   private static Clock instance;
   private Timer timer;
   private final int period; // seconds
@@ -36,6 +40,7 @@ public class Clock {
         }
       };
       timer.scheduleAtFixedRate(repeatedTask, 0, 1000L * period);
+      logger.debug("Clock started");
     }
   }
 
@@ -43,6 +48,7 @@ public class Clock {
     if (timer != null) {
       timer.cancel();
       timer = null;
+      logger.debug("Clock stopped");
     }
   }
 

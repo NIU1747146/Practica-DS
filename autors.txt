@@ -13,3 +13,19 @@ Qui ha fet què
   comentaris, diagrames UML de classes i d'estats i casos de prova.
 - Victor Frauca: patrons Observer i Singleton (Clock, Observer, UnlockedShortly observant el
   rellotge) i refactorització dels estats de la porta.
+
+Fita 2
+
+Angel Moreno Renau, NIU 1744714
+Manel Palomares Burgada, NIU 1747146
+Victor Frauca, NIU 1671963
+
+Qui ha fet què
+- Manel Palomares: patró Visitor per recórrer l'arbre d'àrees (Visitor, FindAreaByIdVisitor,
+  DoorsGivingAccessVisitor, SpacesVisitor) i el seu ús a DirectoryAreas, RequestArea i
+  UserGroup; patró Singleton a DirectoryDoors, DirectoryAreas i DirectoryUsers; diagrama UML.
+- Victor Frauca: estil de codi amb Checkstyle (Google checks) i comentaris i noms de les classes.
+- Angel Moreno: logging amb SLF4J i Logback (logback.xml amb sortida per consola, fitxer html i
+  activity.log amb les peticions i si estan autoritzades, i les 3 opcions de quines classes fan
+  log); canvi dels System.out.println per missatges debug, info i warning a cada classe;
+  correcció dels noms de package perquè el projecte compili.

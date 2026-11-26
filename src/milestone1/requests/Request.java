@@ -1,4 +1,4 @@
-package milestone.n2.requests;
+package milestone1.requests;
 
 import org.json.JSONObject;
 

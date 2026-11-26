@@ -1,11 +1,14 @@
-package milestone.n2.doorstates;
+package milestone1.doorstates;
 
-import milestone.n2.Door;
+import milestone1.Door;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Represents the state of a locked door.
  */
 public class Locked extends DoorState {
+  private static final Logger logger = LoggerFactory.getLogger(Locked.class);
 
   public Locked(Door door, String name) {
     super(door, name);
@@ -13,17 +16,17 @@ public class Locked extends DoorState {
 
   @Override
   public void open() {
-    System.out.println("Door is locked, cannot open");
+    logger.info("Door " + door.getId() + " is locked, cannot open");
   }
 
   @Override
   public void close() {
-    System.out.println("Door is locked, already closed");
+    logger.info("Door " + door.getId() + " is locked, already closed");
   }
 
   @Override
   public void lock() {
-    System.out.println("Door is already locked");
+    logger.info("Door " + door.getId() + " is already locked");
   }
 
   @Override

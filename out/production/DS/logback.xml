@@ -1,0 +1,53 @@
+<configuration>
+  <!-- messages shown in the IntelliJ console -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <!-- the same messages saved in an html file -->
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+      <layout class="ch.qos.logback.classic.html.HTMLLayout">
+        <pattern>%relative%thread%mdc%level%logger%msg</pattern>
+      </layout>
+    </encoder>
+    <file>log.html</file>
+  </appender>
+
+  <!-- activity of the users: requests received by the webserver and if they are authorized -->
+  <appender name="ACTIVITY" class="ch.qos.logback.core.FileAppender">
+    <encoder>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+    <file>activity.log</file>
+  </appender>
+
+  <!-- WebServer writes one info message per request, so they also go to activity.log.
+       Its debug messages (how the request is parsed) only appear with level="debug" -->
+  <logger name="milestone1.WebServer" level="info">
+    <appender-ref ref="ACTIVITY" />
+  </logger>
+
+  <!-- Choose which classes log messages, uncomment only one option -->
+
+  <!-- 1) only classes of the first milestone (the visitors are from the second one) -->
+  <!--
+  <logger name="milestone1.visitors" level="OFF" />
+  -->
+
+  <!-- 2) only classes of the second milestone -->
+  <!--
+  <logger name="milestone1" level="OFF" />
+  <logger name="milestone1.visitors" level="debug" />
+  -->
+
+  <!-- 3) all classes: leave 1) and 2) commented -->
+
+  <!-- change the level to see more or less messages: debug, info or warn -->
+  <root level="debug">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
+  </root>
+</configuration>

@@ -1,15 +1,19 @@
-package milestone.n2;
+package milestone1;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Create and centralizes the management of users throughout the system.
  */
 public final class DirectoryUsers {
+  private static final Logger logger = LoggerFactory.getLogger(DirectoryUsers.class);
+
   private static DirectoryUsers instance = null;
   private final ArrayList<User> users = new ArrayList<>();
 
@@ -110,7 +114,7 @@ public final class DirectoryUsers {
       }
     }
 
-    System.out.println("user with credential " + credential + " not found");
+    logger.warn("user with credential " + credential + " not found");
     return null; // otherwise we get a Java error
   }
 

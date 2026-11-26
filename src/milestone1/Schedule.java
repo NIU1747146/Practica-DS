@@ -1,4 +1,4 @@
-package milestone.n2;
+package milestone1;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

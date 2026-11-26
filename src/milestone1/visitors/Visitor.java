@@ -1,7 +1,7 @@
-package milestone.n2.visitors;
+package milestone1.visitors;
 
-import milestone.n2.Partition;
-import milestone.n2.Space;
+import milestone1.Partition;
+import milestone1.Space;
 
 public interface Visitor {
 

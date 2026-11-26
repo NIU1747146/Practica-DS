@@ -10,11 +10,15 @@ import milestone1.Door;
 import milestone1.visitors.DoorsGivingAccessVisitor;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Lock or unlock request on all the doors of an area.
  */
 public class RequestArea implements Request {
+  private static final Logger logger = LoggerFactory.getLogger(RequestArea.class);
+
   private final String credential;
   private final String action;
   private final String areaId;
@@ -47,6 +51,7 @@ public class RequestArea implements Request {
       // Find all doors giving access to the spaces in this area and process each request.
       DoorsGivingAccessVisitor visitor = new DoorsGivingAccessVisitor();
       area.accept(visitor);
+      logger.debug("Area " + areaId + " has " + visitor.getDoors().size() + " doors");
 
       for (Door door : visitor.getDoors()) {
         RequestReader requestReader = new RequestReader(credential, action, now, door.getId());
@@ -54,6 +59,8 @@ public class RequestArea implements Request {
         // After process(), each request holds its individual answer for the simulator/app.
         requests.add(requestReader);
       }
+    } else {
+      logger.warn("Area " + areaId + " not found");
     }
   }
 

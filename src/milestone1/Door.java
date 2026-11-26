@@ -5,11 +5,15 @@ import milestone1.doorstates.States;
 import milestone1.doorstates.Unlocked;
 import milestone1.requests.RequestReader;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Delegates door actions to its current state (State pattern).
  */
 public class Door {
+  private static final Logger logger = LoggerFactory.getLogger(Door.class);
+
   private final String id;
   private boolean closed; // physically
   private DoorState doorState;
@@ -25,9 +29,10 @@ public class Door {
   public void processRequest(RequestReader request) {
     if (request.isAuthorized()) {
       String action = request.getAction();
+      logger.debug("Door " + id + " in state " + getStateName() + " does action " + action);
       doAction(action);
     } else {
-      System.out.println("not authorized");
+      logger.debug("Door " + id + ": request not authorized");
     }
 
     request.setDoorStateName(getStateName());

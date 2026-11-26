@@ -2,11 +2,15 @@ package milestone1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Create and centralizes the management of doors throughout the system.
  */
 public final class DirectoryDoors {
+  private static final Logger logger = LoggerFactory.getLogger(DirectoryDoors.class);
+
   private ArrayList<Door> allDoors = new ArrayList<>();
   private static DirectoryDoors instance = null;
 
@@ -45,13 +49,13 @@ public final class DirectoryDoors {
       }
     }
 
-    System.out.println("door with id " + id + " not found");
+    logger.warn("door with id " + id + " not found");
     return null; // otherwise we get a Java error
   }
 
   // this is needed by RequestRefresh
   public ArrayList<Door> getAllDoors() {
-    System.out.println(allDoors);
+    logger.debug("all doors: " + allDoors);
     return allDoors;
   }
 }

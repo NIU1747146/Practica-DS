@@ -1,19 +1,23 @@
-package milestone.n2.requests;
+package milestone1.requests;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import milestone.n2.DirectoryDoors;
-import milestone.n2.DirectoryUsers;
-import milestone.n2.Door;
-import milestone.n2.User;
+import milestone1.DirectoryDoors;
+import milestone1.DirectoryUsers;
+import milestone1.Door;
+import milestone1.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Request made at the reader of one door.
  */
 public class RequestReader implements Request {
+  private static final Logger logger = LoggerFactory.getLogger(RequestReader.class);
+
   private final String credential; // who
   private final String action;     // what
   private final LocalDateTime now; // when
@@ -89,6 +93,8 @@ public class RequestReader implements Request {
     assert door != null : "door " + doorId + " not found";
 
     authorize(user, door);
+    logger.debug("Request of " + userName + " to " + action + " door " + doorId
+        + " authorized " + authorized + " reasons " + reasons);
     // Even if not authorized we process the request so all requests can be logged.
     door.processRequest(this);
 

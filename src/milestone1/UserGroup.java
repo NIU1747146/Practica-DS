@@ -1,8 +1,8 @@
-package milestone.n2;
+package milestone1;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import milestone.n2.visitors.SpacesVisitor;
+import milestone1.visitors.SpacesVisitor;
 
 /**
  * Role with the actions, areas and schedule allowed to its users.

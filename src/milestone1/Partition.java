@@ -1,7 +1,7 @@
-package milestone.n2;
+package milestone1;
 
 import java.util.ArrayList;
-import milestone.n2.visitors.Visitor;
+import milestone1.visitors.Visitor;
 
 /**
  * Group of spaces and/or partitions (Composite of the Composite pattern).

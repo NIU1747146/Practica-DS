@@ -1,13 +1,17 @@
-package milestone.n2.doorstates;
+package milestone1.doorstates;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import milestone.n2.Door;
+import milestone1.Door;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Door unlocked for a limited time; observes the Clock to transition to Locked or Propped.
  */
 public class UnlockedShortly extends DoorState implements Observer {
+  private static final Logger logger = LoggerFactory.getLogger(UnlockedShortly.class);
+
   private static final int TIMEOUT_SECONDS = 10;
   private static final int CLOCK_PERIOD_SECONDS = 1;
 
@@ -28,11 +32,11 @@ public class UnlockedShortly extends DoorState implements Observer {
 
       if (door.isClosed()) {
         door.setState(new Locked(door, States.LOCKED));
-        System.out.println("Door " + door.getId() + " automatically locked after "
+        logger.info("Door " + door.getId() + " automatically locked after "
                 + TIMEOUT_SECONDS + " seconds.");
       } else {
         door.setState(new Propped(door, States.PROPPED));
-        System.out.println("Door " + door.getId() + " propped after "
+        logger.warn("Door " + door.getId() + " propped after "
                 + TIMEOUT_SECONDS + " seconds.");
       }
     }
@@ -43,7 +47,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     if (door.isClosed()) {
       door.setClosed(false);
     } else {
-      System.out.println("The door is already open");
+      logger.info("Door " + door.getId() + " is already open");
     }
   }
 
@@ -52,24 +56,24 @@ public class UnlockedShortly extends DoorState implements Observer {
     if (!door.isClosed()) {
       door.setClosed(true);
     } else {
-      System.out.println("The door is already closed");
+      logger.info("Door " + door.getId() + " is already closed");
     }
   }
 
   @Override
   public void lock() {
-    System.out.println("Cannot lock directly from unlocked_shortly");
+    logger.info("Cannot lock door " + door.getId() + " directly from unlocked_shortly");
   }
 
   @Override
   public void unlock() {
-    System.out.println("The door is already unlocked shortly");
+    logger.info("Door " + door.getId() + " is already unlocked shortly");
   }
 
   @Override
   public void unlockShortly() {
     unlockTime = LocalDateTime.now();
-    System.out.println("Door " + door.getId() + " unlock timer reset.");
+    logger.debug("Door " + door.getId() + " unlock timer reset.");
   }
 
   private boolean hasTimeoutPassed() {

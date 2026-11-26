@@ -1,6 +1,6 @@
-package milestone.n2.doorstates;
+package milestone1.doorstates;
 
-import milestone.n2.Door;
+import milestone1.Door;
 
 /**
  * Abstract state of a door; each subclass defines what each action does (State pattern).
