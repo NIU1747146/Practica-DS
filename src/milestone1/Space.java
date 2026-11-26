@@ -5,7 +5,6 @@ import milestone2.Visitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// Space.java
 // Leaf of the Composite: a room or place (parking, hall, stairs...). It knows the doors giving
 // access to it, because an area request needs to find the doors of all the spaces of an area.
 // DirectoryAreas links each door with its origin and destination spaces.

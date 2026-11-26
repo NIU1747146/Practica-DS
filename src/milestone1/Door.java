@@ -8,7 +8,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// Door.java
 // Door between two spaces. It does not decide what each action does: it delegates to its current
 // DoorState (State pattern), and the states change it with setState(). It keeps what is common to
 // all states: id, whether it is physically closed and the spaces it connects.

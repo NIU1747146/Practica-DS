@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-// Schedule.java
 // Dates, weekdays and hours in which a UserGroup can send requests. isWithin() says if a moment
 // is inside the three of them, limits included.
 public class Schedule {

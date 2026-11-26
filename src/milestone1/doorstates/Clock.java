@@ -7,7 +7,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// Clock.java
 // Unique clock (Singleton) that calls update() on its observers every period seconds (Observer
 // pattern). UnlockedShortly uses it to know when its time is up. One shared timer is cheaper than
 // one per door: it starts with the first observer and stops when the last one leaves.

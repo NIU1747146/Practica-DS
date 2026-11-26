@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 
-// User.java
 // Person who sends requests, identified by a credential. It does not know its own permissions:
 // it asks its UserGroup, so they are changed in one place per group.
 public class User {

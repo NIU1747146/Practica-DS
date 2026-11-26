@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// DirectoryDoors.java
 // Creates the doors and finds them by id. Singleton: the state of each door (locked, propped...)
 // lives in the Door objects, so every request has to reach the same instances.
 public final class DirectoryDoors {

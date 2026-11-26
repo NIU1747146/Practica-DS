@@ -2,7 +2,6 @@ package milestone1.doorstates;
 
 import milestone1.Door;
 
-// DoorState.java
 // Abstract state of a Door (State pattern). Each subclass defines what each of the five actions
 // does in that state and, when needed, moves the door to another state with door.setState().
 public abstract class DoorState {

@@ -8,7 +8,6 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// DirectoryUsers.java
 // Creates the user groups (schedule, actions, areas) with their users and finds a user by
 // credential. Singleton: made once at start and shared by all requests. Needs DirectoryAreas
 // created first, because the groups hold areas.

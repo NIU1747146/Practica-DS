@@ -13,7 +13,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// RequestArea.java
 // Lock or unlock request on a whole area. It does not act on doors itself: it finds with a visitor
 // the doors giving access to the area and makes one RequestReader per door, so each door is
 // authorized separately.

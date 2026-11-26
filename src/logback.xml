@@ -27,7 +27,7 @@
   </appender>
 
   <!-- WebServer writes one info message per request, so they also go to activity.log.
-       Its debug messages (how the request is parsed) -->
+       Its debug messages (how the request is parsed) they appear with the root level -->
   <logger name="milestone1.WebServer">
     <appender-ref ref="ACTIVITY" />
   </logger>

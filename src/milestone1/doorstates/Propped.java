@@ -4,7 +4,6 @@ import milestone1.Door;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// Propped.java
 // Door left open when its unlocked_shortly time ran out. It cannot be locked or unlocked until
 // someone closes it, and then it becomes Locked. Entering this state is logged as a warning.
 public class Propped extends DoorState {

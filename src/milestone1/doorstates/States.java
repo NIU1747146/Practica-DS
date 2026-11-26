@@ -1,6 +1,5 @@
 package milestone1.doorstates;
 
-// States.java
 // Names of the door states. They are sent in the JSON answers so the simulator can draw each door.
 public final class States {
   public static final String LOCKED = "locked";

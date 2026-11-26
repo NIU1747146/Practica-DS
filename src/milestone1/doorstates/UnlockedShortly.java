@@ -6,7 +6,6 @@ import milestone1.Door;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// UnlockedShortly.java
 // Door unlocked for 10 seconds. It observes the Clock: every second update() checks if the time
 // is up, and then goes to Locked if the door is closed or to Propped if it was left open. Asking
 // unlock_shortly again restarts the countdown.

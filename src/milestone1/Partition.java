@@ -5,7 +5,6 @@ import milestone2.Visitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// Partition.java
 // Composite of the Composite: a group of spaces and/or other partitions (a floor, the basement,
 // the whole building). Users are given areas that can be partitions, so permissions and area
 // requests act on all the spaces below.

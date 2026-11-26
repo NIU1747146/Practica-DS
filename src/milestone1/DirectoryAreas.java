@@ -4,7 +4,6 @@ import milestone2.FindAreaByIdVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// DirectoryAreas.java
 // Builds the tree of the building and links every door to its origin and destination spaces.
 // Singleton: there is one building and every request and user group must see the same tree.
 // Needs the doors created first.

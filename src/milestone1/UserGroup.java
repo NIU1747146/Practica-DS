@@ -6,7 +6,6 @@ import milestone2.SpacesVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// UserGroup.java
 // Role (employees, managers...) with the schedule, actions and areas allowed to its users;
 // building it assigns the group to its users. Areas may be partitions, so to know if a space is
 // allowed it visits the area with a SpacesVisitor.

@@ -17,7 +17,6 @@ import milestone1.requests.RequestRefresh;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// WebServer.java
 // HTTP server on port 8080: receives the GET requests of the simulator or the Flutter app, builds
 // the Request, processes it and answers with its JSON. Each connection runs in its own thread
 // (SocketThread). Based on:

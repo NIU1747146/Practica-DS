@@ -8,7 +8,6 @@ import milestone1.Space;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// DoorsGivingAccessVisitor.java
 // Collects the doors giving access to the spaces of the visited area; RequestArea uses it to know
 // which doors to act on. Partitions have no doors of their own, so visitPartition does nothing.
 public class DoorsGivingAccessVisitor implements Visitor {

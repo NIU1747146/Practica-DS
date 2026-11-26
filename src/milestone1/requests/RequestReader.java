@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// RequestReader.java
 // Request made at the reader of one door: who (credential), what (action), when and where (door).
 // process() authorizes the user and tells the Door to do the action. The answer holds the reasons
 // why it was not authorized.

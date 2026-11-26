@@ -6,7 +6,6 @@ import milestone1.Space;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// SpacesVisitor.java
 // Collects the spaces under an area (the area itself if it is a space). UserGroup uses it to know
 // if a space is inside one of the areas allowed to the group.
 public class SpacesVisitor implements Visitor {

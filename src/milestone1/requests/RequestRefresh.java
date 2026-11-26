@@ -3,13 +3,11 @@ package milestone1.requests;
 import java.util.ArrayList;
 import milestone1.DirectoryDoors;
 import milestone1.Door;
-import milestone1.Main;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// RequestRefresh.java
 // Request for the state of all the doors. The simulator sends it when loading and periodically,
 // to redraw the doors that changed by themselves (locked or propped after the time out).
 public class RequestRefresh implements Request {
@@ -20,6 +18,7 @@ public class RequestRefresh implements Request {
   // or when doors change between locked and propped states after a refresh request.
   // Also allows testing partition requests sent by the Flutter client app
   // and updating the simulator's readers accordingly.
+  @Override
   public void process() {
     ArrayList<Door> doors = DirectoryDoors.getInstance().getAllDoors();
     logger.debug("Refresh request: {} doors", doors.size());

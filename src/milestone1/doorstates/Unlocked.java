@@ -4,7 +4,6 @@ import milestone1.Door;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// Unlocked.java
 // Door unlocked with no time limit: it can be opened and closed freely. It can only be locked
 // when closed, because we cannot lock an open door.
 public class Unlocked extends DoorState {

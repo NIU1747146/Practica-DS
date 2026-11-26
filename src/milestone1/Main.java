@@ -7,13 +7,9 @@ import org.slf4j.LoggerFactory;
 // Before executing enable assertions :
 // https://se-education.org/guides/tutorials/intellijUsefulSettings.html
 
-// Checkstyle PackageName rejects digits. We keep milestone1/milestone2 as package names on
-// purpose: logback.xml enables or disables the logs of each milestone by package name.
-
-// Main.java
 // Starts the system: creates the doors, then the areas (they need the doors), then the users
 // (they need the areas), and starts the web server that receives the requests.
-// Checkstyle PackageName rejects digits. We keep milestone1/milestone2 as package names on
+// Checkstyle Main rejects digits. We keep milestone1/milestone2 as package names on
 // purpose: logback.xml enables or disables the logs of each milestone by package name.
 public class Main {
   private static final Logger logger = LoggerFactory.getLogger(Main.class);
