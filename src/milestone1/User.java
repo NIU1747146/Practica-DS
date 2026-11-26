@@ -1,14 +1,18 @@
 package milestone1;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
 
-/**
- * User with a credential; asks its group for its permissions.
- */
+// User.java
+// Person who sends requests, identified by a credential. It does not know its own permissions:
+// it asks its UserGroup, so they are changed in one place per group.
 public class User {
   private final String name;
   private final String credential;
   private UserGroup group;
+  private static final Logger logger = LoggerFactory.getLogger(User.class);
 
   public User(String name, String credential) {
     this.name = name;
@@ -28,7 +32,9 @@ public class User {
   }
 
   public boolean canSendRequest(LocalDateTime now) {
-    return group != null && group.isWithinSchedule(now);
+    boolean allowed = group != null && group.isWithinSchedule(now);
+    logger.debug("User {} can send a request at {}: {}", name, now, allowed);
+    return allowed;
   }
 
   public boolean cannotAccessSpace(Space space) {
@@ -36,7 +42,9 @@ public class User {
   }
 
   public boolean canDoAction(String action) {
-    return group != null && group.hasAction(action);
+    boolean allowed = group != null && group.hasAction(action);
+    logger.debug("User {} can do action {}: {}", name, action, allowed);
+    return allowed;
   }
 
   @Override

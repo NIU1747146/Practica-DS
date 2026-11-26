@@ -5,9 +5,9 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Create and centralizes the management of doors throughout the system.
- */
+// DirectoryDoors.java
+// Creates the doors and finds them by id. Singleton: the state of each door (locked, propped...)
+// lives in the Door objects, so every request has to reach the same instances.
 public final class DirectoryDoors {
   private static final Logger logger = LoggerFactory.getLogger(DirectoryDoors.class);
 
@@ -16,6 +16,7 @@ public final class DirectoryDoors {
 
   private DirectoryDoors() {}
 
+  // synchronized: lazy creation must be safe if two threads (requests) ask at the same time
   public static synchronized DirectoryDoors getInstance() {
     if (instance == null) {
       instance = new DirectoryDoors();

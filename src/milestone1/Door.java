@@ -8,9 +8,10 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Delegates door actions to its current state (State pattern).
- */
+// Door.java
+// Door between two spaces. It does not decide what each action does: it delegates to its current
+// DoorState (State pattern), and the states change it with setState(). It keeps what is common to
+// all states: id, whether it is physically closed and the spaces it connects.
 public class Door {
   private static final Logger logger = LoggerFactory.getLogger(Door.class);
 
@@ -38,6 +39,7 @@ public class Door {
     request.setDoorStateName(getStateName());
   }
 
+  // an unknown action is a bug in the simulator or the requests, not a user mistake
   private void doAction(String action) {
     switch (action) {
       case Actions.OPEN:

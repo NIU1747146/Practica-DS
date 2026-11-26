@@ -7,15 +7,16 @@ import milestone1.Actions;
 import milestone1.Area;
 import milestone1.DirectoryAreas;
 import milestone1.Door;
-import milestone2.visitors.DoorsGivingAccessVisitor;
+import milestone2.DoorsGivingAccessVisitor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Lock or unlock request on all the doors of an area.
- */
+// RequestArea.java
+// Lock or unlock request on a whole area. It does not act on doors itself: it finds with a visitor
+// the doors giving access to the area and makes one RequestReader per door, so each door is
+// authorized separately.
 public class RequestArea implements Request {
   private static final Logger logger = LoggerFactory.getLogger(RequestArea.class);
 

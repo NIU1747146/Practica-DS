@@ -17,12 +17,12 @@ import milestone1.requests.RequestRefresh;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Web server that receives the requests and answers them in JSON.
- * Based on
- * <a href="https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java">HTTP</a>
- * <a href="http://www.jcgonzalez.com/java-socket-mini-server-http-example">Socket</a>
- */
+// WebServer.java
+// HTTP server on port 8080: receives the GET requests of the simulator or the Flutter app, builds
+// the Request, processes it and answers with its JSON. Each connection runs in its own thread
+// (SocketThread). Based on:
+// https://www.ssaurel.com/blog/create-a-simple-http-web-server-in-java
+// http://www.jcgonzalez.com/java-socket-mini-server-http-example
 public class WebServer {
   private static final Logger logger = LoggerFactory.getLogger(WebServer.class);
 

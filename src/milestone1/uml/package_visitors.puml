@@ -2,7 +2,7 @@
 'https://plantuml.com/state-diagram
 skinparam classAttributeIconSize 0
 
-package milestone2.visitors {
+package milestone2 {
   interface Visitor {
   + {abstract} visitSpace(space : Space)
   + {abstract} visitPartition(partition : Partition)
@@ -38,7 +38,7 @@ class Door
 
 Visitor ..> Space : visits
 Visitor ..> Partition : visits
-FindAreaByIdVisitor --> "0..1" Area : found
+FindAreaByIdVisitor --> "0..1" Area : resultArea
 DoorsGivingAccessVisitor --> "*" Door : doors
 SpacesVisitor --> "*" Space : spaces
 @enduml

@@ -4,9 +4,9 @@ import milestone1.Door;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Represents the state of a locked door.
- */
+// Locked.java
+// State of a door that is closed and refuses to open. A door becomes Locked from Unlocked.lock()
+// (only if closed), from Propped.close(), and when UnlockedShortly times out with the door closed.
 public class Locked extends DoorState {
   private static final Logger logger = LoggerFactory.getLogger(Locked.class);
 

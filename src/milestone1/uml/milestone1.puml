@@ -145,7 +145,7 @@ package requests {
   class RequestReader
 }
 
-package milestone2.visitors {
+package milestone2 {
   interface Visitor
 }
 

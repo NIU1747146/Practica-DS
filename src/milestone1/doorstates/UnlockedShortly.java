@@ -6,9 +6,10 @@ import milestone1.Door;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Door unlocked for a limited time; observes the Clock to transition to Locked or Propped.
- */
+// UnlockedShortly.java
+// Door unlocked for 10 seconds. It observes the Clock: every second update() checks if the time
+// is up, and then goes to Locked if the door is closed or to Propped if it was left open. Asking
+// unlock_shortly again restarts the countdown.
 public class UnlockedShortly extends DoorState implements Observer {
   private static final Logger logger = LoggerFactory.getLogger(UnlockedShortly.class);
 
@@ -25,6 +26,7 @@ public class UnlockedShortly extends DoorState implements Observer {
     clock.addObserver(this);
   }
 
+  // leave the Clock first, otherwise this old state would keep receiving ticks
   @Override
   public void update() {
     if (hasTimeoutPassed()) {

@@ -1,10 +1,12 @@
 package milestone1;
 
-import milestone2.visitors.Visitor;
+import milestone2.Visitor;
 
-/**
- * Space or partition of the building (Component of the Composite pattern).
- */
+// Area.java
+// Node of the tree that models the building (Composite pattern): Space is a leaf and Partition
+// groups spaces and other partitions, so requests and user groups treat both the same way. The
+// traversals of the tree are not here but in the visitors (Visitor pattern); accept() is the
+// only entry point.
 public abstract class Area {
   protected final String id;
 

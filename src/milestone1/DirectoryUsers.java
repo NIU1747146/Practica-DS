@@ -8,9 +8,10 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Create and centralizes the management of users throughout the system.
- */
+// DirectoryUsers.java
+// Creates the user groups (schedule, actions, areas) with their users and finds a user by
+// credential. Singleton: made once at start and shared by all requests. Needs DirectoryAreas
+// created first, because the groups hold areas.
 public final class DirectoryUsers {
   private static final Logger logger = LoggerFactory.getLogger(DirectoryUsers.class);
 
@@ -19,6 +20,7 @@ public final class DirectoryUsers {
 
   private DirectoryUsers() {}
 
+  // synchronized: lazy creation must be safe if two threads (requests) ask at the same time
   public static synchronized DirectoryUsers getInstance() {
     if (instance == null) {
       instance = new DirectoryUsers();

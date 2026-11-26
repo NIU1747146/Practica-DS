@@ -1,4 +1,4 @@
-package milestone2.visitors;
+package milestone2;
 
 import milestone1.Area;
 import milestone1.Partition;
@@ -6,9 +6,9 @@ import milestone1.Space;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Visitor that finds an area by its ID.
- */
+// FindAreaByIdVisitor.java
+// Looks for the area (space or partition) with a given id, null if there is none. It turns the
+// ids of requests and groups into an Area. Ids are unique, so it does not stop at the first match.
 public class FindAreaByIdVisitor implements Visitor {
   private static final Logger logger = LoggerFactory.getLogger(FindAreaByIdVisitor.class);
 

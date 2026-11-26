@@ -1,8 +1,8 @@
 package milestone1;
 
-/**
- * Defines the valid action identifiers used in incoming requests
- */
+// Actions.java
+// Names of the actions a request can ask for. They are the same strings the simulator sends and
+// the ones each UserGroup stores to say what its users may do. Only constants, not instantiable.
 public final class Actions {
   private Actions() {
     // restrict instantiation

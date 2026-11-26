@@ -1,16 +1,21 @@
 package milestone1;
 
-import milestone2.visitors.FindAreaByIdVisitor;
+import milestone2.FindAreaByIdVisitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-/**
- * Creates the tree of areas and save it in the system.
- */
+// DirectoryAreas.java
+// Builds the tree of the building and links every door to its origin and destination spaces.
+// Singleton: there is one building and every request and user group must see the same tree.
+// Needs the doors created first.
 public final class DirectoryAreas {
   private static DirectoryAreas instance = null;
   private Area rootArea;
+  private static final Logger logger = LoggerFactory.getLogger(DirectoryAreas.class);
 
   private DirectoryAreas() {}
 
+  // synchronized: lazy creation must be safe if two threads (requests) ask at the same time
   public static synchronized DirectoryAreas getInstance() {
     if (instance == null) {
       instance = new DirectoryAreas();
@@ -59,8 +64,10 @@ public final class DirectoryAreas {
     building.addChild(stairs);
     building.addChild(exterior);
     rootArea = building;
+    logger.info("Tree of areas created, root is {}", rootArea.getId());
   }
 
+  // registered only in the destination: the door gives access to 'to', not to 'from'
   private void link(String doorId, Space from, Space to) {
     Door door = DirectoryDoors.getInstance().findDoorById(doorId);
     if (door == null) {
@@ -71,6 +78,7 @@ public final class DirectoryAreas {
   }
 
   public Area findAreaById(String id) {
+    logger.debug("Looking for area {}", id);
     FindAreaByIdVisitor visitor = new FindAreaByIdVisitor(id);
     rootArea.accept(visitor);
     return visitor.getResultArea();
