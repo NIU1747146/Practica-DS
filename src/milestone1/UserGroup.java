@@ -2,7 +2,7 @@ package milestone1;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import milestone1.visitors.SpacesVisitor;
+import milestone2.visitors.SpacesVisitor;
 
 /**
  * Role with the actions, areas and schedule allowed to its users.

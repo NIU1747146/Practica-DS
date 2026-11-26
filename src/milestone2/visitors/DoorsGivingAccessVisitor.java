@@ -1,4 +1,4 @@
-package milestone1.visitors;
+package milestone2.visitors;
 
 import java.util.ArrayList;
 import java.util.List;

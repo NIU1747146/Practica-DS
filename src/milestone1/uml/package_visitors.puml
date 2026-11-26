@@ -2,7 +2,7 @@
 'https://plantuml.com/state-diagram
 skinparam classAttributeIconSize 0
 
-package visitors {
+package milestone2.visitors {
   interface Visitor {
   + {abstract} visitSpace(space : Space)
   + {abstract} visitPartition(partition : Partition)

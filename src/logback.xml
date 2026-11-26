@@ -32,15 +32,14 @@
 
   <!-- Choose which classes log messages, uncomment only one option -->
 
-  <!-- 1) only classes of the first milestone (the visitors are from the second one) -->
+  <!-- 1) only classes of the first milestone -->
   <!--
-  <logger name="milestone1.visitors" level="OFF" />
+  <logger name="milestone2" level="OFF" />
   -->
 
   <!-- 2) only classes of the second milestone -->
   <!--
   <logger name="milestone1" level="OFF" />
-  <logger name="milestone1.visitors" level="debug" />
   -->
 
   <!-- 3) all classes: leave 1) and 2) commented -->

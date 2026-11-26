@@ -1,4 +1,4 @@
-package milestone1.visitors;
+package milestone2.visitors;
 
 import milestone1.Area;
 import milestone1.Partition;

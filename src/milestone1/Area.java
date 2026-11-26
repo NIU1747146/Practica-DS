@@ -1,6 +1,6 @@
 package milestone1;
 
-import milestone1.visitors.Visitor;
+import milestone2.visitors.Visitor;
 
 /**
  * Space or partition of the building (Component of the Composite pattern).

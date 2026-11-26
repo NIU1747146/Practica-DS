@@ -28,4 +28,5 @@ Qui ha fet què
 - Angel Moreno: logging amb SLF4J i Logback (logback.xml amb sortida per consola, fitxer html i
   activity.log amb les peticions i si estan autoritzades, i les 3 opcions de quines classes fan
   log); canvi dels System.out.println per missatges debug, info i warning a cada classe;
-  correcció dels noms de package perquè el projecte compili.
+  correcció dels noms de package perquè el projecte compili; package milestone2 amb les classes
+  noves (visitors) i diagrama UML actualitzat amb els Singletons.

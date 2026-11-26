@@ -1,6 +1,6 @@
 package milestone1;
 
-import milestone1.visitors.FindAreaByIdVisitor;
+import milestone2.visitors.FindAreaByIdVisitor;
 
 /**
  * Creates the tree of areas and save it in the system.

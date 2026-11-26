@@ -1,7 +1,7 @@
 package milestone1;
 
 import java.util.ArrayList;
-import milestone1.visitors.Visitor;
+import milestone2.visitors.Visitor;
 
 /**
  * Room or place of the building; knows the doors giving access to it (Leaf of the Composite).

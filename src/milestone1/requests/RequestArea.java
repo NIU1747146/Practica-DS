@@ -7,7 +7,7 @@ import milestone1.Actions;
 import milestone1.Area;
 import milestone1.DirectoryAreas;
 import milestone1.Door;
-import milestone1.visitors.DoorsGivingAccessVisitor;
+import milestone2.visitors.DoorsGivingAccessVisitor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;

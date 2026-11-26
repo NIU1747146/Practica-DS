@@ -6,9 +6,9 @@ class Main {
 + {static} main(args : String[])
 }
 note right of Main::main
-DirectoryDoors.makeDoors()
-DirectoryAreas.makeAreas()
-DirectoryUsers.makeUsers()
+DirectoryDoors.getInstance().makeDoors()
+DirectoryAreas.getInstance().makeAreas()
+DirectoryUsers.getInstance().makeUsers()
 new WebServer()
 end note
 
@@ -34,23 +34,32 @@ of WebServer
 end note
 
 class DirectoryDoors {
-- {static} allDoors : Door[]
-+ {static} makeDoors()
-+ {static} findDoorById(id : String) : Door
-+ {static} getAllDoors() : Door[]
+- {static} instance : DirectoryDoors
+- allDoors : Door[]
+- DirectoryDoors()
++ {static} getInstance() : DirectoryDoors
++ makeDoors()
++ findDoorById(id : String) : Door
++ getAllDoors() : Door[]
 }
 
 class DirectoryAreas {
-- {static} rootArea : Area
-+ {static} makeAreas()
-+ {static} findAreaById(id : String) : Area
-- {static} link(doorId : String, from : Space, to : Space)
+- {static} instance : DirectoryAreas
+- rootArea : Area
+- DirectoryAreas()
++ {static} getInstance() : DirectoryAreas
++ makeAreas()
++ findAreaById(id : String) : Area
+- link(doorId : String, from : Space, to : Space)
 }
 
 class DirectoryUsers {
-- {static} users : User[]
-+ {static} makeUsers()
-+ {static} findUserByCredential(credential : String) : User
+- {static} instance : DirectoryUsers
+- users : User[]
+- DirectoryUsers()
++ {static} getInstance() : DirectoryUsers
++ makeUsers()
++ findUserByCredential(credential : String) : User
 }
 
 abstract class Area {
@@ -136,7 +145,7 @@ package requests {
   class RequestReader
 }
 
-package visitors {
+package milestone2.visitors {
   interface Visitor
 }
 
@@ -152,6 +161,11 @@ Door ..> RequestReader : processes
 DirectoryDoors --> "*" Door : allDoors
 DirectoryAreas --> "1" Area : rootArea
 DirectoryUsers --> "*" User : users
+DirectoryDoors --> "1" DirectoryDoors : instance
+DirectoryAreas --> "1" DirectoryAreas : instance
+DirectoryUsers --> "1" DirectoryUsers : instance
+note "Singleton pattern" as NSingleton
+NSingleton .. DirectoryAreas
 
 User --> "1" UserGroup : group
 UserGroup --> "*" User : users
