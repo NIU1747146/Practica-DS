@@ -1,3 +1,4 @@
+// Package name contains digits (milestone1/milestone2) as required by the project specification
 package milestone2;
 
 import milestone1.Partition;

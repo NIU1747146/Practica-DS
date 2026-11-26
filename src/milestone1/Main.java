@@ -1,3 +1,4 @@
+// Package name contains digits (milestone1/milestone2) as required by the project specification
 package milestone1;
 
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import org.slf4j.LoggerFactory;
 public class Main {
   private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-  public static void main() {
+  public static void main(String[] args) {
     logger.info("Starting the access control system");
     DirectoryDoors.getInstance().makeDoors();
     DirectoryAreas.getInstance().makeAreas();
